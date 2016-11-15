@@ -45,3 +45,18 @@ Socket(int family, int type, int protocol)
 		err_sys("socket error");
 	return n;
 }
+
+void 
+Write(int fd, void *ptr, size_t nbytes)
+{
+	if(write(fd, ptr, nbytes) != nbytes)
+		err_sys("write error");
+}
+ssize_t
+Read(int fd, void *ptr, size_t nbytes)
+{
+	ssize_t n;
+	if( -1 == (n = read(fd, ptr, nbytes)))
+		err_sys("read error");
+	return (n);
+}
