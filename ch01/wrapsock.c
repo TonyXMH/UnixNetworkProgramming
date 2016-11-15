@@ -5,10 +5,10 @@
 	> Created Time: 2016年11月14日 星期一 21时28分25秒
  ************************************************************************/
 
-#incldue "my_unp.h"
+#include "my_unp.h"
 
 int 
-Accept(int fd, struct sockaddr *sa, socklen_t salenptr)
+Accept(int fd, struct sockaddr *sa, socklen_t *salenptr)
 {
 	int n;
 	if( (n = accept(fd, sa, salenptr)) < 0)		
@@ -60,3 +60,11 @@ Read(int fd, void *ptr, size_t nbytes)
 		err_sys("read error");
 	return (n);
 }
+
+void
+Close(int fd)
+{
+	if(-1 == close(fd))
+		err_sys("close error");
+}
+
